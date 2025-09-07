@@ -1,1 +1,2 @@
-# Tic Tac Toe enkel version
+# Tic Tac Toe made with React & TypeScript
+
