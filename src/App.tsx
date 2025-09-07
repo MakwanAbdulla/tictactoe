@@ -7,14 +7,23 @@ const app = () =>{
   const [board, setBoard] = useState(initialBoard);
   const [XTurn, setXTurn] = useState(true);
 
+  const [gameStarted, setGameStarted] = useState(false);
+
 
   const handleClick = (index:number) => {
-    if (board[index]) return;
+    if (!gameStarted || board[index]) return;
     const newBoard = [...board];
     newBoard[index] = XTurn ? '❌' : '⭕';
     setBoard(newBoard);
     setXTurn(!XTurn);
   }
+  const start = () => {
+    setBoard(initialBoard);
+    setXTurn(true);
+    setGameStarted(true);
+  };
+
+
   const restart = () => {
     setBoard(initialBoard);
     setXTurn(true);
@@ -29,6 +38,7 @@ return (
         </button>
       ))}
     </div>
+    <button className='start-btn' onClick={start}>Start Game</button>
     <button className='restart-button' onClick={restart}>Restart Game</button>
     <p>Next Turn: {XTurn ? 'X' : 'O'}</p>
   </div>
